@@ -48,5 +48,5 @@ if msg_user:
 
     st.chat_message("assistant").write(resposta_ai)
 
-    mensagem_ai = {"role": "assistant", "content": resposta_ai}
+    mensagem_ai = {"role": "assistant", "content": "Oi, sou a IA feita pelo gabriel..." + resposta_ai}
     st.session_state["lista_mensagem"].append(mensagem_ai)
