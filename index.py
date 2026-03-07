@@ -1,63 +1,50 @@
 import streamlit as st
-import ollama
+from groq import Groq
+import random
 
+client = Groq(
+    api_key="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"
+)
 
+frases_spinner = [
+    "Você está sendo bem gentil, chutaria que você é a nicolly ou a yasmin...",
+    "gostei de você, acho que você é Ani",
+    "Você parece ser legal, deve ser a Emanuelly",
+    "Gostei do jeito que você pergunta sabia, acho que tu é a Manu, acertei?",
+    "Você é pensativo parece ser o Gean namorado do afonso",
+    "Falam que você é chata, mas parece ser uma pessoa legal..."
+]
 
-st.write('# WannaCryBot') #markdown
+st.write("# WannaCryBot")
 
-
-if not "lista_mensagem" in st.session_state:
+if "lista_mensagem" not in st.session_state:
     st.session_state["lista_mensagem"] = []
 
-
+# mostrar histórico
 for mensagem in st.session_state["lista_mensagem"]:
-        role = mensagem["role"]
-        content = mensagem["content"]
-        st.chat_message(role).write(content)
+    role = mensagem["role"]
+    content = mensagem["content"]
+    st.chat_message(role).write(content)
 
-msg_user = st.chat_input('Digite seus pensamentos... ')
+msg_user = st.chat_input("Digite seus pensamentos...")
 
 if msg_user:
-      #user -> humano
-      #assistent -> AI
-      st.chat_message("user").write(msg_user)
-      mensagem = {"role": "user", "content": msg_user}
-      st.session_state["lista_mensagem"].append(mensagem)
 
-      #resposta do modelo
-      resposta_modelo = ollama.chat(
-            messages = st.session_state["lista_mensagem"],
-            model="llama3"
-      )
+    st.chat_message("user").write(msg_user)
 
-      resposta_ai = resposta_modelo["message"]["content"]
+    mensagem = {"role": "user", "content": msg_user}
+    st.session_state["lista_mensagem"].append(mensagem)
 
-      #exibir a resposta da ia na tela
+    with st.spinner(random.choice(frases_spinner)):
 
-      st.chat_message("assistant").write(resposta_ai)
-      mensagem_ai = {"role": "assistant", "content": resposta_ai}
-      st.session_state["lista_mensagem"].append(mensagem_ai)
+        resposta_modelo = client.chat.completions.create(
+            messages=st.session_state["lista_mensagem"],
+            model="llama-3.1-8b-instant"
+        )
 
+        resposta_ai = resposta_modelo.choices[0].message.content
 
+    st.chat_message("assistant").write(resposta_ai)
 
-
-
-
-    #para cada mensagem que estiver dentro do st.session_state (no caaso na sessão do cockie) exiba a mesagem:
-
-
-
-
-
-    #Criar listas para o historico...
-
-    #dicionario com .py
-    
-
-
-    # Mesagens...
-
-
-
-
-
+    mensagem_ai = {"role": "assistant", "content": resposta_ai}
+    st.session_state["lista_mensagem"].append(mensagem_ai)
