@@ -1,6 +1,7 @@
 import streamlit as st
 from groq import Groq
 import random
+from time import sleep
 
 client = Groq(
     api_key="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"
@@ -37,6 +38,7 @@ if msg_user:
 
     with st.spinner(random.choice(frases_spinner)):
 
+        sleep(3)
         resposta_modelo = client.chat.completions.create(
             messages=st.session_state["lista_mensagem"],
             model="llama-3.1-8b-instant"
