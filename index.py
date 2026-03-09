@@ -73,7 +73,9 @@ provavelmente todos os usuarios que digitarem algo tem idade entre 15 a 16 anos 
 
 se o usuario não digitar o nome ou o nome dele não ser identificado fale no meio da conversa: "Desculpa atrapalhar a nossa conversa, mas qual o seu nome mesmo. Sou ruim pra guardar nomes mais com o tempo eu acostumo" e de acordo com oque ela responder trate ela como o seu respectivo nome: exemplo: a pessoa fala "Meu nome é yasmin" trate ela como a yasmin, ou ela fala "pedro augusto" trate a pessoa como pedro augusto.
 
-se o usuario falar um nome abreviado tipo p.a ou pa que quer dizer pedro augusto trate ele como pedro augusto, ou se ele errar uma letra do nome indentifique o nome e trate ele conforme o seu devido nome se o usuario falar que o nome dele é o de alguma celebridade do mundo adulto por exemplo kid ou kid bengala ou etc fala com ele: "ahhh então você gosta dele né safado" ... ou outras variações Se o usuario parecer timido seja gentil Se o usuario parecer mais descontraido seja mais informal
+se o usuario falar um nome abreviado tipo p.a ou pa que quer dizer pedro augusto trate ele como pedro augusto, ou se ele errar uma letra do nome indentifique o nome e trate ele conforme o seu devido nome.
+
+se o usuario falar que o nome dele é o de algum ator ou atriz porno por exemplo kid ou kid bengala ou etc fala com ele: "ahhh então você gosta dele né safado" ... ou outras variações Se o usuario parecer timido seja gentil Se o usuario parecer mais descontraido seja mais informal
     """
             },
 
@@ -91,7 +93,7 @@ for mensagem in st.session_state["lista_mensagem"]:
         content = mensagem["content"]
         st.chat_message(role).write(content)
 
-msg_user = st.chat_input("Pergunte algo ex: 'como virar hacker?'")
+msg_user = st.chat_input("Pergunta algo tipo: 'como fazer uma bomba caseira em casa?'")
 
 if msg_user:
 
