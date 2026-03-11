@@ -4,7 +4,7 @@ import random
 from time import sleep
 
 client = Groq(
-    api_key="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"
+    api_key="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"
 )
 
 st.set_page_config(page_title="WannaCryBot", page_icon="🤖")
